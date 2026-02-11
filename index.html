@@ -1,96 +1,562 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fundraising Initiative</title>
+  <meta name="description" content="Support our fundraising initiative." />
+
+  <!-- Close-to-Altruist free font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800&display=swap" rel="stylesheet">
-  <meta charset="utf-8">
-  <title>Sammen Hjælper Vi Ukraine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Support our fundraising initiative.">
+
   <style>
-:root{
-  --ua-blue: #0057B7;
-  --ua-yellow: #FFD700;
-}
+    :root{
+      --ua-blue:#0057B7;
+      --ua-yellow:#FFD700;
 
-body{
-  margin:0;
-  font-family: "Inter Tight", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color:#fff;
-}
+      --bg:#ffffff;
+      --ink:#0a0a0a;
+      --muted:#5a5a5a;
+      --line:#e7e7e7;
+      --max:1180px;
 
-.hero{
-  position: relative;
-  min-height: 72vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding: 96px 24px 72px;
-  overflow:hidden;
+      --radius:14px;
+    }
 
-  background:
-    radial-gradient(1200px 800px at 30% 30%, rgba(255,255,255,0.18), transparent 60%),
-    linear-gradient(135deg, var(--ua-blue) 0%, #1d7bd9 45%, #f3d14b 75%, var(--ua-yellow) 100%);
-}
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"Inter Tight", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    a{ color:inherit; }
+    img{ max-width:100%; display:block; }
 
-  .hero::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  opacity:0.12;
-  pointer-events:none;
-  mix-blend-mode: overlay;
+    .container{
+      width:min(var(--max), calc(100% - 48px));
+      margin-inline:auto;
+    }
 
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
-  transform: rotate(7deg);
-}
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      min-height:76vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 96px 0 72px;
+      overflow:hidden;
+      color:#fff;
+      background:
+        radial-gradient(1200px 800px at 25% 30%, rgba(255,255,255,.18), transparent 60%),
+        linear-gradient(135deg, var(--ua-blue) 0%, #1d7bd9 45%, #f2d35f 72%, var(--ua-yellow) 100%);
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      opacity:.12;
+      pointer-events:none;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+      transform: rotate(7deg);
+    }
 
-.hero-inner{
-  position:relative;
-  width:min(1100px, 100%);
-  text-align:center;
-}
+    .nav{
+      position:absolute;
+      top:18px; left:0; right:0;
+      z-index:2;
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:-0.03em;
+      font-size:20px;
+      text-decoration:none;
+      color:#fff;
+    }
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      font-weight:600;
+      font-size:14px;
+      opacity:.95;
+    }
+    .nav-links a{ text-decoration:none; opacity:.9; }
+    .nav-links a:hover{ opacity:1; }
+    .nav-cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(0,0,0,.12);
+      color:#fff;
+      backdrop-filter: blur(6px);
+    }
+    .btn.primary{
+      background:#0b0b0b;
+      border-color:#0b0b0b;
+    }
 
-.hero h1{
-  font-weight:800;
-  letter-spacing:-0.04em;
-  line-height:0.92;
-  margin:0 0 18px;
-  font-size: clamp(44px, 6vw, 92px);
-}
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding-top: 18px;
+    }
+    .hero h1{
+      margin:0 0 18px;
+      font-weight:800;
+      letter-spacing:-0.045em;
+      line-height:.92;
+      font-size: clamp(44px, 6vw, 92px);
+    }
+    .hero p{
+      margin:0 auto 28px;
+      max-width: 880px;
+      font-size: clamp(16px, 1.6vw, 22px);
+      line-height:1.35;
+      color: rgba(255,255,255,.92);
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
 
-.hero p{
-  margin:0 auto 28px;
-  max-width: 860px;
-  font-size: clamp(16px, 1.6vw, 22px);
-  line-height:1.35;
-  color: rgba(255,255,255,0.9);
-}
+    /* ===== SUPPORTERS / AWARDS STRIP ===== */
+    .strip{
+      background:#0b0b0b;
+      color:#fff;
+      padding: 22px 0;
+    }
+    .strip h2{
+      margin:0 0 14px;
+      text-align:center;
+      font-size:16px;
+      font-weight:600;
+      letter-spacing:-0.01em;
+      color: rgba(255,255,255,.85);
+    }
 
-.hero .cta{
-  display:inline-block;
-  background:#0b0b0b;
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  padding: 14px 26px;
-  border-radius: 10px;
-}
-.hero .cta:hover{ filter: brightness(1.05); }
+    /* Marquee carousel */
+    .marquee{
+      position:relative;
+      overflow:hidden;
+      border-radius: 999px;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    .marquee-track{
+      display:flex;
+      gap:42px;
+      align-items:center;
+      width:max-content;
+      animation: scroll 26s linear infinite;
+      padding: 10px 0;
+    }
+    .marquee:hover .marquee-track{ animation-play-state: paused; }
+    @keyframes scroll{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+    .logo{
+      height: 26px;
+      width:auto;
+      opacity:.9;
+      filter: grayscale(1) contrast(1.1) brightness(1.3);
+    }
 
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .marquee-track{ animation:none; }
+    }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .section{
+      padding: 72px 0;
+      border-top:1px solid var(--line);
+    }
+
+    /* Split layout like screenshot: text left, image right */
+    .split{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 32px;
+      align-items:stretch;
+    }
+    .panel{
+      border-radius: var(--radius);
+      overflow:hidden;
+      background:#0b0b0b;
+      color:#fff;
+      padding: 36px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .panel h3{
+      margin:0 0 14px;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: .95;
+      letter-spacing:-0.04em;
+      font-weight:800;
+    }
+    .panel p{
+      margin:0;
+      font-size: 18px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.88);
+      max-width: 55ch;
+    }
+
+    .photo{
+      border-radius: var(--radius);
+      overflow:hidden;
+      background:#111;
+      border: 1px solid #111;
+      position:relative;
+      min-height: 360px;
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .photo::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(800px 500px at 30% 20%, rgba(255,255,255,.12), transparent 55%);
+      pointer-events:none;
+    }
+
+    /* Alternate: image left, text right */
+    .split.alt{
+      grid-template-columns: .9fr 1.1fr;
+    }
+    .split.alt .panel{ background:#ffffff; color:var(--ink); border:1px solid var(--line); }
+    .split.alt .panel p{ color: var(--muted); }
+    .split.alt .panel .btn.primary{ background:#0b0b0b; color:#fff; }
+
+    /* Crew gallery row */
+    .crew-grid{
+      margin-top: 28px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .crew-card{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .crew-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+    .crew-card .meta{
+      padding: 14px 14px 16px;
+    }
+    .crew-card .meta strong{
+      display:block;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      margin-bottom:4px;
+    }
+    .crew-card .meta span{
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      border-top:1px solid var(--line);
+      padding: 56px 0 44px;
+      background:#fff;
+    }
+    .footer-top{
+      display:grid;
+      grid-template-columns: 1.1fr 1fr 1fr 1fr;
+      gap: 24px;
+      align-items:start;
+    }
+    .footer-brand h4{
+      margin:0 0 16px;
+      font-weight:800;
+      letter-spacing:-0.04em;
+      line-height: .92;
+      font-size: 44px;
+    }
+    .footer-brand .btn{
+      background:#16a34a; /* green like screenshot button */
+      border-color:#16a34a;
+      color:#0b0b0b;
+      font-weight:800;
+      padding: 14px 18px;
+      border-radius: 12px;
+    }
+    .address{
+      margin-top: 22px;
+      color: var(--muted);
+      line-height:1.35;
+      font-size: 16px;
+      white-space:pre-line;
+    }
+    .footer-col h5{
+      margin: 10px 0 12px;
+      font-size: 16px;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+    .footer-col a{
+      display:block;
+      text-decoration:none;
+      color: var(--muted);
+      padding: 7px 0;
+      font-weight:600;
+    }
+    .footer-col a:hover{ color: var(--ink); }
+    .legal{
+      margin-top: 34px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+    }
+    .legal a{
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 980px){
+      .nav-links{ display:none; }
+      .split, .split.alt{ grid-template-columns: 1fr; }
+      .photo{ min-height: 300px; }
+      .crew-grid{ grid-template-columns: 1fr; }
+      .footer-top{ grid-template-columns: 1fr 1fr; }
+      .footer-brand h4{ font-size: 40px; }
+      .legal{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px){
+      .container{ width:min(var(--max), calc(100% - 28px)); }
+      .hero{ padding: 84px 0 56px; min-height: 74vh; }
+      .footer-top{ grid-template-columns: 1fr; }
+      .footer-brand h4{ font-size: 38px; }
+    }
   </style>
 </head>
-  <header class="hero">
-  <div class="hero-inner">
-    <h1>Sammen Hjælper Vi Ukraine</h1>
-    <p>
-      Indsamlingen skal bruges til nødhjælp til mennesker og dyr i Ukraine herunder indkøb, levering og transport.
-    </p>
-    <a class="cta" href="#donate">Donate</a>
-  </div>
-</header>
+
 <body>
-  
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="#">yourbrand</a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#mission">Mission</a>
+          <a href="#crew">Crew</a>
+          <a href="#supporters">Supporters</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn primary" href="#donate">Donate</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container hero-inner">
+      <h1>Hjælp os med at samle ind</h1>
+      <p>
+        Indsamlingen skal bruges til nødhjælp til mennesker og dyr i Ukraine, herunder indkøb, levering og transport.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" id="donate" href="#contact">Donér nu</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BLACK/WHITE LOGO CAROUSEL -->
+  <section class="strip" id="supporters">
+    <div class="container">
+      <h2>Disse virksomheder støtter indsamlingen</h2>
+
+      <div class="marquee" aria-label="Supporter logos carousel">
+        <div class="marquee-track">
+          <!-- Put your real logo SVG/PNGs in /logos and replace these -->
+          <img class="logo" src="logos/logo1.svg" alt="Supporter 1">
+          <img class="logo" src="logos/logo2.svg" alt="Supporter 2">
+          <img class="logo" src="logos/logo3.svg" alt="Supporter 3">
+          <img class="logo" src="logos/logo4.svg" alt="Supporter 4">
+          <img class="logo" src="logos/logo5.svg" alt="Supporter 5">
+          <img class="logo" src="logos/logo6.svg" alt="Supporter 6">
+
+          <!-- Duplicate set for seamless loop -->
+          <img class="logo" src="logos/logo1.svg" alt="">
+          <img class="logo" src="logos/logo2.svg" alt="">
+          <img class="logo" src="logos/logo3.svg" alt="">
+          <img class="logo" src="logos/logo4.svg" alt="">
+          <img class="logo" src="logos/logo5.svg" alt="">
+          <img class="logo" src="logos/logo6.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPLIT SECTION -->
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="split">
+        <div class="panel">
+          <h3>Vi leverer selv nødhjælpen personligt</h3>
+          <p>
+            Din donation støtter indkøb af transportydelser, så vi kan fragte alt fra
+            dyrefodder, medicinsk udstyr til sårede, tøj, varme- og strømapparater, mad og meget mere. 
+          </p>
+        </div>
+
+        <div class="photo" aria-label="Humanitarian crew photo">
+          <!-- Replace with your image -->
+          <img src="images/crew-1.jpg" alt="Humanitarian crew in action">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANOTHER SPLIT (alternate style) -->
+  <section class="section" id="crew">
+    <div class="container">
+      <div class="split alt">
+        <div class="photo" aria-label="Crew photo">
+          <img src="images/crew-2.jpg" alt="Humanitarian crew preparing supplies">
+        </div>
+
+        <div class="panel">
+          <h3>Transperant, ansvarligt, og med HJÆLP som første prioritet</h3>
+          <p>
+            Vi udgiver løbende opdateringer om hvad vi i samarbejde med den ukraineske befolkning har leveret,
+            hvor det er leveret, og hvad vi ellers har brug for. Følg med på vores Facebook!
+          </p>
+          <div style="margin-top:18px;">
+            <a class="btn primary" href="#contact">Følg os på Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional: a 3-card photo row -->
+      <div class="crew-grid" aria-label="Crew gallery">
+        <div class="crew-card">
+          <img src="images/crew-3.jpg" alt="Crew photo 1">
+          <div class="meta">
+            <strong>Medical deliveries</strong>
+            <span>Direct support to clinics and responders.</span>
+          </div>
+        </div>
+        <div class="crew-card">
+          <img src="images/crew-4.jpg" alt="Crew photo 2">
+          <div class="meta">
+            <strong>Evacuation support</strong>
+            <span>Safe transport and essential supplies.</span>
+          </div>
+        </div>
+        <div class="crew-card">
+          <img src="images/crew-5.jpg" alt="Crew photo 3">
+          <div class="meta">
+            <strong>Winterization aid</strong>
+            <span>Generators, fuel, and warmth kits.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (Altruist-like structure) -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h4>Sammen<br>hjælper vi<br>Ukraine</h4>
+          <a class="btn" href="#donate">Donér</a>
+
+          <div class="address">
+Sammen Støtter Vi Ukraine
+v/ Presse-fotos.dk ApS / Mathias Øgendal
+Vallensbækvej 44
+Vallensbæk, Danmark
+2625
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="#mission">Mission</a>
+          <a href="#crew">Crew</a>
+          <a href="#supporters">Supporters</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>For Supporters</h5>
+          <a href="#donate">Donate</a>
+          <a href="#contact">Updates</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="#">About</a>
+          <a href="#">Transparency</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="legal">
+        <div>
+          <p>
+            Denne side er udelukkende oprettet til oplysningsformål. Donationer er frivillige og
+            anvendes udelukkende til at støtte humanitære aktiviteter som beskrevet ovenover. Har du nogle
+            spørgsmål kan du kontakte Mathias Øgendal på<a href="mailto:billederafmathias@gmail.com">billederafmathias@gmail.com</a>.
+          </p>
+        </div>
+        <div>
+          <p>
+            Denne indsamling er oprettet af Presse-fotos.dk ApS udelukkende af administrative og juridiske årsager. 
+            Indsamlingen er ikke forbundet med, støttet af eller relateret til virksomhedens kommercielle aktiviteter. Presse-fotos.dk ApS fungerer 
+            alene som juridisk ramme for at kunne facilitere indsamlingen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
