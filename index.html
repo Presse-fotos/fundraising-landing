@@ -15,6 +15,8 @@
     :root{
       --ua-blue:#0057B7;
       --ua-yellow:#FFD700;
+      --ua-blue-dark: #003a80;
+      --ua-yellow-dark: #c9a800;
 
       --bg:#ffffff;
       --ink:#0a0a0a;
@@ -99,23 +101,65 @@
       gap:10px;
       align-items:center;
     }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 16px;
-      border-radius: 10px;
-      text-decoration:none;
-      font-weight:700;
-      font-size:14px;
-      border:1px solid rgba(255,255,255,.25);
-      background: rgba(0,0,0,.12);
-      color:#fff;
-      backdrop-filter: blur(6px);
+    
+    /* Base button */
+    .btn,
+    button,
+    input[type="submit"],
+    input[type="button"]{
+      background:
+        linear-gradient(
+          135deg,
+          var(--ua-blue-dark) 0%,
+          var(--ua-blue) 45%,
+          var(--ua-yellow-dark) 100%
+        );
+      color: #ffffff;
+      border: none;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-radius: 12px;
+      padding: 14px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        filter .15s ease;
     }
-    .btn.primary{
-      background:#0b0b0b;
-      border-color:#0b0b0b;
+
+    /* Hover */
+    .btn:hover,
+    button:hover,
+    input[type="submit"]:hover,
+    input[type="button"]:hover{
+      filter: brightness(1.08) saturate(1.05);
+      box-shadow:
+        0 10px 24px rgba(0,0,0,.18),
+        inset 0 0 0 1px rgba(255,255,255,.15);
+      transform: translateY(-1px);
+    }
+    
+    /* Active (pressed) */
+    .btn:active,
+    button:active,
+    input[type="submit"]:active,
+    input[type="button"]:active{
+      transform: translateY(0);
+      box-shadow:
+        0 6px 16px rgba(0,0,0,.2) inset;
+    }
+    
+    /* Focus (keyboard accessibility) */
+    .btn:focus-visible,
+    button:focus-visible,
+    input[type="submit"]:focus-visible,
+    input[type="button"]:focus-visible{
+      outline: 3px solid rgba(255,255,255,.7);
+      outline-offset: 3px;
     }
 
     .hero-inner{
@@ -542,7 +586,7 @@ Vallensbæk, Danmark
           <p>
             Denne side er udelukkende oprettet til oplysningsformål. Donationer er frivillige og
             anvendes udelukkende til at støtte humanitære aktiviteter som beskrevet ovenover. Har du nogle
-            spørgsmål kan du kontakte Mathias Øgendal på<a href="mailto:billederafmathias@gmail.com">billederafmathias@gmail.com</a>.
+            spørgsmål kan du kontakte Mathias Øgendal på <a href="mailto:billederafmathias@gmail.com">billederafmathias@gmail.com</a>.
           </p>
         </div>
         <div>
